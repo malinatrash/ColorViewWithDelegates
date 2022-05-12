@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol ColorViewViewControllerDelegate: ColorViewViewController {
-    func setColor(red: String, green: String, blue: String)
+protocol ColorViewControllerDelegate: ColorViewViewController {
+    func changeColorView(red: Float, green: Float, blue: Float)
 }
 
 class MainViewController: UIViewController {
@@ -18,22 +18,18 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+}
+
+extension MainViewController: ColorViewControllerDelegate {
+    func changeColorView(red: Float, green: Float, blue: Float) {
         backgroudView.backgroundColor = UIColor.init(
-            red: CGFloat(0),
-            green: CGFloat(1),
-            blue: CGFloat(1),
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
             alpha: 1
         )
         
-        
     }
-
-
 }
-
-//extension MainViewController: ColorViewViewControllerDelegate {
-//    func setColor(red: String, green: String, blue: String) {
-//
-//    }
-//}
 

@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="bIh-Me-Qxm">
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="vma-9m-hBh">
                             <connections>
-                                <segue destination="om3-KZ-ESK" kind="show" id="0Kc-Ep-0M4"/>
+                                <segue destination="om3-KZ-ESK" kind="presentation" id="UAc-3a-RmS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -49,13 +49,13 @@
         <!--Color View View Controller-->
         <scene sceneID="ux2-Zo-Si1">
             <objects>
-                <viewController id="om3-KZ-ESK" customClass="ColorViewViewController" customModule="ColorViewWithDelegates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="om3-KZ-ESK" customClass="ColorViewViewController" customModule="ColorViewWithDelegates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S3m-ha-H3f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="W5o-XF-Xzb">
-                                <rect key="frame" x="16" y="44" width="288" height="257.5"/>
+                                <rect key="frame" x="16" y="0.0" width="288" height="257.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeV-bT-jxB">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="98"/>
@@ -116,7 +116,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="DKE-Yp-zYi">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="DKE-Yp-zYi">
                                                 <rect key="frame" x="105.5" y="0.0" width="140.5" height="119.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="bwj-lb-4Qi">
@@ -176,12 +176,15 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtT-B1-xsK">
-                                <rect key="frame" x="105" y="421.5" width="110" height="50.5"/>
+                                <rect key="frame" x="105" y="377.5" width="110" height="94.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="30"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="doneButtonPressed" destination="om3-KZ-ESK" eventType="touchUpInside" id="Q6Q-BI-OBc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WAQ-dJ-3Dc"/>
@@ -201,11 +204,14 @@
                     <connections>
                         <outlet property="blueColorValueLabel" destination="8eV-z0-pih" id="q4u-dA-7ZC"/>
                         <outlet property="blueSlider" destination="XdB-mH-x5S" id="kMv-Ue-rYg"/>
+                        <outlet property="blueSliderTF" destination="Sbq-Ev-yK2" id="d3C-Cw-oEy"/>
                         <outlet property="colorView" destination="JeV-bT-jxB" id="hHk-yA-1iR"/>
                         <outlet property="greenColorValueLabel" destination="j4f-9h-O7f" id="j7i-0o-guq"/>
                         <outlet property="greenSlider" destination="Twe-ET-2Xr" id="QSp-EK-Obm"/>
+                        <outlet property="greenSliderTF" destination="v6U-Cz-0qt" id="gVU-fT-wIe"/>
                         <outlet property="redColorValueLabel" destination="EA5-94-Z8l" id="Myf-hc-A5A"/>
                         <outlet property="redSlider" destination="bwj-lb-4Qi" id="Tg5-1w-3d7"/>
+                        <outlet property="redSliderTF" destination="Uos-r3-Ixq" id="Ec2-aO-YJ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zei-xa-yAK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
