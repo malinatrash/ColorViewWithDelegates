@@ -16,20 +16,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vf8-uA-bpf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Vf8-uA-bpf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RFB-PZ-XXX"/>
-                            <constraint firstItem="Vf8-uA-bpf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Rit-PQ-6K3"/>
-                            <constraint firstItem="Vf8-uA-bpf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jko-q6-VjN"/>
-                            <constraint firstAttribute="bottom" secondItem="Vf8-uA-bpf" secondAttribute="bottom" id="nV2-2l-3ZO"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bIh-Me-Qxm">
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="vma-9m-hBh">
@@ -38,9 +26,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="backgroudView" destination="Vf8-uA-bpf" id="7Yk-If-BJq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

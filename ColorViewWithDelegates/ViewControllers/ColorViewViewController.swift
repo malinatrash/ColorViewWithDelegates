@@ -24,16 +24,21 @@ class ColorViewViewController: UIViewController {
     @IBOutlet weak var blueSliderTF: UITextField!
     
     var delegate: ColorViewControllerDelegate!
+    var colors: CIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorView.layer.cornerRadius = 30
         redSliderTF.delegate = self
         greenSliderTF.delegate = self
         blueSliderTF.delegate = self
         
         navigationItem.hidesBackButton = true
         
-        colorView.layer.cornerRadius = 30
+        redSlider.value = Float(colors.red)
+        greenSlider.value = Float(colors.green)
+        blueSlider.value = Float(colors.blue)
+        
         changeColorView()
         writeValue(value: redSlider.value, valueLabel: redColorValueLabel, valueTF: redSliderTF)
         writeValue(value: greenSlider.value, valueLabel: greenColorValueLabel, valueTF: greenSliderTF)

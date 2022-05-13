@@ -12,30 +12,26 @@ protocol ColorViewControllerDelegate {
 }
 
 class MainViewController: UIViewController {
-
-    @IBOutlet weak var backgroudView: UIView!
+    
+    private var colors: CIColor {
+        CIColor(color: view.backgroundColor ?? .white)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroudView.backgroundColor = UIColor.init(
-            red: CGFloat(1),
-            green: CGFloat(1),
-            blue: CGFloat(1),
-            alpha: 1
-        )
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let colorViewVC = segue.destination as? ColorViewViewController else { return }
+        colorViewVC.colors = colors
         colorViewVC.delegate = self
         }
 }
 
 extension MainViewController: ColorViewControllerDelegate {
     func changeColorView(red: UISlider, green: UISlider, blue: UISlider) {
-        backgroudView.backgroundColor = UIColor.init(
+        view.backgroundColor = UIColor.init(
             red: CGFloat(red.value),
             green: CGFloat(green.value),
             blue: CGFloat(blue.value),
