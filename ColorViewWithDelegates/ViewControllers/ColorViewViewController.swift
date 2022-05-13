@@ -28,21 +28,9 @@ class ColorViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorView.layer.cornerRadius = 30
-        redSliderTF.delegate = self
-        greenSliderTF.delegate = self
-        blueSliderTF.delegate = self
         
-        navigationItem.hidesBackButton = true
+        prepareView()
         
-        redSlider.value = Float(colors.red)
-        greenSlider.value = Float(colors.green)
-        blueSlider.value = Float(colors.blue)
-        
-        changeColorView()
-        writeValue(value: redSlider.value, valueLabel: redColorValueLabel, valueTF: redSliderTF)
-        writeValue(value: greenSlider.value, valueLabel: greenColorValueLabel, valueTF: greenSliderTF)
-        writeValue(value: blueSlider.value, valueLabel: blueColorValueLabel, valueTF: blueSliderTF)
     }
     
     @IBAction func changeRedSliderValue() {
@@ -76,26 +64,83 @@ extension ColorViewViewController {
             alpha: 1
         )
     }
+    
     private func writeValue(value: Float, valueLabel: UILabel, valueTF: UITextField) {
         valueLabel.text = String(value)
         valueLabel.text = String(round(100 * value) / 100)
         valueTF.text = valueLabel.text
+    }
+    
+    private func prepareView() {
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
+        
+        navigationItem.hidesBackButton = true
+        colorView.layer.cornerRadius = 30
+        
+        redSliderTF.delegate = self
+        greenSliderTF.delegate = self
+        blueSliderTF.delegate = self
+        
+        redSliderTF.addDoneButtonOnKeyboard()
+        greenSliderTF.addDoneButtonOnKeyboard()
+        blueSliderTF.addDoneButtonOnKeyboard()
+        
+        redSlider.value = Float(colors.red)
+        greenSlider.value = Float(colors.green)
+        blueSlider.value = Float(colors.blue)
+        
+        changeColorView()
+        writeValue(value: redSlider.value, valueLabel: redColorValueLabel, valueTF: redSliderTF)
+        writeValue(value: greenSlider.value, valueLabel: greenColorValueLabel, valueTF: greenSliderTF)
+        writeValue(value: blueSlider.value, valueLabel: blueColorValueLabel, valueTF: blueSliderTF)
+    }
+    
+    private func showAlert(with title: String, and message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true)
     }
 }
 
 extension ColorViewViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == redSliderTF {
-            redSlider.value = Float(textField.text!) ?? 0
-            redColorValueLabel.text = textField.text
+            if Float(textField.text!) ?? 0.5 > 1 {
+                showAlert(with: "Wrong format", and: "Please enter valid value")
+                textField.text = "0.5"
+                redSlider.value = 0.5
+                redColorValueLabel.text = textField.text
+            } else {
+                redSlider.value = Float(textField.text!) ?? 0
+                redColorValueLabel.text = textField.text
+            }
             changeColorView()
         } else if textField == greenSliderTF {
-            greenSlider.value = Float(textField.text!) ?? 0
-            greenColorValueLabel.text = textField.text
+            if Float(textField.text!) ?? 0.5 > 1 {
+                showAlert(with: "Wrong format", and: "Please enter valid value")
+                textField.text = "0.5"
+                greenSlider.value = 0.5
+                greenColorValueLabel.text = textField.text
+            } else {
+                greenSlider.value = Float(textField.text!) ?? 0
+                greenColorValueLabel.text = textField.text
+            }
             changeColorView()
         } else {
-            blueSlider.value = Float(textField.text!) ?? 0
-            blueColorValueLabel.text = textField.text
+            if Float(textField.text!) ?? 0.5 > 1 {
+                showAlert(with: "Wrong format", and: "Please enter valid value")
+                textField.text = "0.5"
+                blueSlider.value = 0.5
+                blueColorValueLabel.text = textField.text
+            } else {
+                blueSlider.value = Float(textField.text!) ?? 0
+                blueColorValueLabel.text = textField.text
+            }
             changeColorView()
         }
     }
