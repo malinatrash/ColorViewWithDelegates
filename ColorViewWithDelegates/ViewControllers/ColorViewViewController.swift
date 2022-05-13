@@ -40,7 +40,6 @@ class ColorViewViewController: UIViewController {
         writeValue(value: blueSlider.value, valueLabel: blueColorValueLabel, valueTF: blueSliderTF)
     }
     
-    
     @IBAction func changeRedSliderValue() {
         changeColorView()
         writeValue(value: redSlider.value, valueLabel: redColorValueLabel, valueTF: redSliderTF)
@@ -58,7 +57,7 @@ class ColorViewViewController: UIViewController {
     
     @IBAction func doneButtonPressed() {
         view.endEditing(true)
-        delegate.changeColorView(red: redSlider.value, green: greenSlider.value, blue: blueSlider.value)
+        delegate.changeColorView(red: redSlider, green: greenSlider, blue: blueSlider)
         dismiss(animated: true)
     }
 }

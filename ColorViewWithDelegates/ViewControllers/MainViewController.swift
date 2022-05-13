@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol ColorViewControllerDelegate: ColorViewViewController {
-    func changeColorView(red: Float, green: Float, blue: Float)
+protocol ColorViewControllerDelegate {
+    func changeColorView(red: UISlider, green: UISlider, blue: UISlider)
 }
 
 class MainViewController: UIViewController {
@@ -18,18 +18,29 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-}
-
-extension MainViewController: ColorViewControllerDelegate {
-    func changeColorView(red: Float, green: Float, blue: Float) {
         backgroudView.backgroundColor = UIColor.init(
-            red: CGFloat(red),
-            green: CGFloat(green),
-            blue: CGFloat(blue),
+            red: CGFloat(1),
+            green: CGFloat(1),
+            blue: CGFloat(1),
             alpha: 1
         )
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let colorViewVC = segue.destination as? ColorViewViewController else { return }
+        colorViewVC.delegate = self
+        }
+}
+
+extension MainViewController: ColorViewControllerDelegate {
+    func changeColorView(red: UISlider, green: UISlider, blue: UISlider) {
+        backgroudView.backgroundColor = UIColor.init(
+            red: CGFloat(red.value),
+            green: CGFloat(green.value),
+            blue: CGFloat(blue.value),
+            alpha: 1
+        )
     }
 }
 
